@@ -1,16 +1,18 @@
 {
+  "homepage": "https://mutugi310.github.io/Countries_app",
   "name": "countries-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://mutugi310.github.io/Countries_app/",
+  
   "scripts": {
     "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
+    
   },
   "dependencies": {
     "axios": "^1.7.2",

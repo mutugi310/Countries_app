@@ -20,8 +20,6 @@ export const ThemeProvider = ({ children }) => {
     useEffect(() => {
       // Save theme to local storage
       localStorage.setItem('theme', theme);
-  
-      // Add or remove dark class from HTML element
       
     }, [theme]);
   

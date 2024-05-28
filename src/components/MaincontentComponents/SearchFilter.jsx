@@ -2,9 +2,16 @@ import React, { useContext } from 'react'
 import { IoSearch } from "react-icons/io5";
 import { ThemeContext } from '../ThemeContext';
 
-function SarchFilter({searchWord, setSearchWord, selectedRegion, setSelectedRegion}) {
+function SarchFilter({searchWord, setSearchWord, selectedRegion, setSelectedRegion, setView}) {
     
     const{theme}=useContext(ThemeContext);
+    const handleInputChange=(e)=>{
+        setSearchWord(e.target.value)
+}
+    const handleSelection=(e)=>{
+        setSelectedRegion(e.target.value)
+        setView('filteredCountries')
+    }
 
   return (
     
@@ -16,7 +23,7 @@ function SarchFilter({searchWord, setSearchWord, selectedRegion, setSelectedRegi
                 </div>
                 <input type="search" id="searchInput" value={searchWord}
                     placeholder= "Search for a country..." 
-                    onChange={(e)=>setSearchWord(e.target.value)}
+                    onChange={handleInputChange}
                     className={`${theme=="light"? "bg-white": "bg-darkBlue"} p-2 pl-5`} 
                 />
             </div>
@@ -24,7 +31,7 @@ function SarchFilter({searchWord, setSearchWord, selectedRegion, setSelectedRegi
         <div>
             <select name="regions" id="regions" 
             value={selectedRegion}
-            onChange={(e)=>setSelectedRegion(e.target.value)}
+            onChange={handleSelection}
             className={`${theme=="light"? "bg-white text-darkGray":" bg-darkBlue text-white"} p-2 rounded`}
             >
                 <option value="">Filter by Region</option>

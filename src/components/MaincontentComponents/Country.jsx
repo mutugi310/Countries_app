@@ -47,7 +47,7 @@ const Countries =({countries}) => {
             <h2 className='my-2 font-bold'>{country.name.common}</h2>
             <p><span className='font-semibold'>Population</span>: {country.population.toLocaleString()}</p>
             <p>Region: {country.region}</p>
-            <p>Capital: {country.capital?.[0]}</p>
+            <p>Capital: {country.capital?.[0] }</p>
           </section>
           </article>))
       }

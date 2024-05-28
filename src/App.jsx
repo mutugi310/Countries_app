@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import {Routes, Route} from "react-router-dom"
 import MainContent from "./components/MainContent";
-import Header from "./components/Header"
+import Header from "./components/Header";
 import './App.css'
 import CountryDitails from "./components/CountryDitails";
 
 
 
-function App() {
 
+function App() {
+  const [view, setView] = useState('home'); // 'home' or 'filtered'
 
   return (
     <>
      
-        <Header></Header>
+        <Header setView={setView}></Header>
         <Routes>
-          <Route path='/' element= {<MainContent/>}></Route>
+          <Route path='/' element= {<MainContent view={view} setView={setView} />}></Route>
           <Route path="/country-details/:countryName" element={<CountryDitails/>} />
         </Routes>
         

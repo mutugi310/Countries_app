@@ -7,14 +7,16 @@ import { IoMoon } from "react-icons/io5";
 
 
 
-function Header() {
+
+function Header({setView}) {
    const{theme,changeTheme}= useContext(ThemeContext)
+   
   return (
     <>
       
       <header className={`${theme=="light"? 'bg-white text-darkBlue':'bg-darkBlue text-white'} w-full`}>
         <div className='flex justify-between py-5 px-5 w-11/12 m-auto'>
-          <h1 className="text-2ml font-bold">Where is your World?</h1>
+          <h1 onClick={()=> setView('home')} className="text-2ml font-bold cursor-pointer">Where is your World?</h1>
           <div className='flex gap-2 cursor-pointer'onClick={changeTheme}>
             <span >
               {theme=="light"? <IoMoonOutline />: <IoMoon className='text-white' />}

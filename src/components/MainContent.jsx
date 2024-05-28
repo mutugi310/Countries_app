@@ -7,7 +7,7 @@ import SearchFilterCountries from "./MaincontentComponents/SearchFilterCountries
 
 
 
-function MainContent(){
+function MainContent({view, setView}){
     const{theme}=useContext(ThemeContext)
     const [searchWord, setSearchWord] = useState('');
     const [selectedRegion, setSelectedRegion]=useState('');
@@ -21,42 +21,55 @@ function MainContent(){
             targetCountries.includes(country.name.common)
           );
     
-          if (searchWord) {
+          if (searchWord){
             filtered = countriesData.filter(country =>
               country.name.common.toLowerCase().includes(searchWord.toLowerCase())
             );
+            
           }
     
-          if (selectedRegion) {
+          if (view==='filteredCountries') {
             filtered = countriesData.filter(country =>
               country.region.toLowerCase() === selectedRegion.toLowerCase()
             );
+            if (searchWord) {
+              filtered = countriesData.filter(country =>
+                country.name.common.toLowerCase().includes(searchWord.toLowerCase())
+              );
+              
+            }           
+          }
+          if(view==='home'){
+            setSelectedRegion('')
           }
     
           filtered.sort((a, b) =>
             targetCountries.indexOf(a.name.common) - targetCountries.indexOf(b.name.common)
           );
-    
+          
           setFilteredCountries(filtered);
         }
-      }, [countriesData, searchWord, selectedRegion]);
+      }, [countriesData,searchWord,selectedRegion,view]);
     
     return(
         <>
         <main className={`${theme=="light"? 'bg-lightGray text-deepDarkBlueTX ':'bg-deepDarkBlueBG text-white'}  p-0 m-auto min-h-screen w-full  `} >
-           <div className="w-11/12 justify-center m-auto">
+          <div className="w-11/12 justify-center m-auto">
             <section className=" text-s" >
                 <SarchFilter
                     searchWord={searchWord}
                     setSearchWord={setSearchWord}
                     selectedRegion={selectedRegion}
                     setSelectedRegion={setSelectedRegion}
+                    setView={setView}
+                    
+                    
                 />
             </section>
             <section className=" gap-4 mx-auto">
                 {loading && <h2>Loading...</h2>}
                 {error && <p>Error: {error.message}</p>}
-                {!searchWord && !selectedRegion ? (
+                {!searchWord && view ==='home'? (
                 <Country countries={filteredCountries} />
                 ) : (
                 <SearchFilterCountries filteredCountries={filteredCountries} />

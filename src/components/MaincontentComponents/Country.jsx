@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../ThemeContext'
 import { useNavigate } from 'react-router-dom'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 //import useFetch from '../useFetch'
 /* import germanyFlag from '../../assets/images/1280px-Germany_Flag.png'
 import usaFlag from '../../assets/images/1280px-USA_Flag.png'
@@ -39,7 +41,7 @@ const Countries =({countries}) => {
       {countries.map((country) => (
         <article key={country.name.common} className="flex flex-col rounded-lg shadow-md overflow-hidden w-full ">
           <div className='px-3 cursor-pointer'>
-            <img src={country.flags.svg} alt={`${country.name.common} Flag`} onClick={()=> navigate(`country-details/${country.name.common}`)} className='w-full'/>
+            <LazyLoadImage src={country.flags.svg} alt={`${country.name.common} Flag`} onClick={()=> navigate(`country-details/${country.name.common}`)} effect='brur' className='w-full'/>
           </div>
           <section className={(theme=="light"? 'bg-lightGray text-deepDarkBlueTX px-5 pb-5':'bg-deepDarkBlueBG text-white px-5 pb-5')}>
             <h2 className='my-2 font-bold'>{country.name.common}</h2>
